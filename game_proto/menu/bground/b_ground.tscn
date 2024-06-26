@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkdgonihhand4"]
+
+[ext_resource type="Texture2D" uid="uid://bywu4dkd2dqn6" path="res://assets/game_fon.png" id="1_algln"]
+[ext_resource type="Script" path="res://menu/bground/b_ground.gd" id="1_fsqyl"]
+
+[node name="BGround" type="ParallaxBackground"]
+script = ExtResource("1_fsqyl")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(1925.1, 0)
+
+[node name="GameFon" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(965.5, 540)
+scale = Vector2(1.50156, 1.42744)
+texture = ExtResource("1_algln")

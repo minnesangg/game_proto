@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://brn5gsfytpv0n"]
+
+[ext_resource type="Script" path="res://menu/menu.gd" id="1_ureph"]
+[ext_resource type="PackedScene" uid="uid://bkdgonihhand4" path="res://menu/bground/b_ground.tscn" id="2_5axvp"]
+[ext_resource type="Texture2D" uid="uid://b8ngb2hg4cd2i" path="res://assets/play_button.png" id="2_dhspd"]
+[ext_resource type="FontFile" uid="uid://bl31onidt7mqy" path="res://assets/varna-2.ttf" id="3_ik7xw"]
+
+[node name="menu" type="Node2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_ureph")
+
+[node name="PlayButton2" type="Sprite2D" parent="."]
+position = Vector2(1930, 1434)
+texture = ExtResource("2_dhspd")
+
+[node name="PlayButton3" type="Sprite2D" parent="."]
+position = Vector2(1932, 758)
+texture = ExtResource("2_dhspd")
+
+[node name="Play" type="Button" parent="."]
+offset_left = 1636.0
+offset_top = 646.0
+offset_right = 2212.0
+offset_bottom = 849.0
+theme_override_fonts/font = ExtResource("3_ik7xw")
+theme_override_font_sizes/font_size = 100
+text = "PLAY"
+flat = true
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 1630.0
+offset_top = 1310.0
+offset_right = 2210.0
+offset_bottom = 1518.0
+theme_override_fonts/font = ExtResource("3_ik7xw")
+theme_override_font_sizes/font_size = 100
+text = "QUIT"
+flat = true
+
+[node name="BGround" parent="." instance=ExtResource("2_5axvp")]
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

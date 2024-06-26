@@ -1,0 +1,126 @@
+[gd_scene load_steps=11 format=3 uid="uid://di7yawkx21lxa"]
+
+[ext_resource type="Texture2D" uid="uid://bjuacruqwuqk5" path="res://assets/Sprite-0003.png" id="1_o82cr"]
+[ext_resource type="Texture2D" uid="uid://db72h2bkm6w0w" path="res://assets/Sprite-0001.png" id="2_3uwjg"]
+[ext_resource type="Texture2D" uid="uid://bia0io8b4h628" path="res://assets/Sprite-0002.png" id="3_jcwb3"]
+[ext_resource type="Texture2D" uid="uid://b6dbl2x8t2rel" path="res://assets/png-clipart-health-video-game-pixel-art-bar-health-game-rectangle-thumbnail-removebg-preview.png" id="4_xu5ja"]
+[ext_resource type="FontFile" uid="uid://bl31onidt7mqy" path="res://assets/varna-2.ttf" id="5_6tbck"]
+[ext_resource type="Script" path="res://map/Label.gd" id="6_l8fq5"]
+
+[sub_resource type="Animation" id="Animation_pmu56"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("daytext:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lfbqn"]
+resource_name = "daytext"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("daytext:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.878431)]
+}
+
+[sub_resource type="Animation" id="Animation_3nstk"]
+resource_name = "daytext_fadeout"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("daytext:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.878431), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fyngr"]
+_data = {
+"RESET": SubResource("Animation_pmu56"),
+"daytext": SubResource("Animation_lfbqn"),
+"daytext_fadeout": SubResource("Animation_3nstk")
+}
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Panel" type="Panel" parent="."]
+offset_top = -2.0
+offset_right = 298.0
+offset_bottom = 82.0
+
+[node name="HealthProgressBar" type="TextureProgressBar" parent="Panel"]
+modulate = Color(1, 1, 1, 0.843137)
+layout_mode = 0
+offset_left = 74.0
+offset_top = 2.0
+offset_right = 292.0
+offset_bottom = 68.0
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("1_o82cr")
+texture_over = ExtResource("2_3uwjg")
+texture_progress = ExtResource("3_jcwb3")
+tint_over = Color(0.89059, 0.89059, 0.89059, 1)
+tint_progress = Color(0.8239, 0.167236, 0.141776, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel"]
+position = Vector2(38, 37)
+scale = Vector2(0.221264, 0.20977)
+texture = ExtResource("4_xu5ja")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 167.0
+offset_top = 18.0
+offset_right = 263.0
+offset_bottom = 101.0
+theme_override_fonts/font = ExtResource("5_6tbck")
+theme_override_font_sizes/font_size = 25
+script = ExtResource("6_l8fq5")
+
+[node name="Panel2" type="Panel" parent="."]
+offset_left = 1681.0
+offset_top = -1.0
+offset_right = 1919.0
+offset_bottom = 111.0
+
+[node name="time" type="Label" parent="."]
+offset_left = 1729.0
+offset_top = 4.0
+offset_right = 1943.0
+offset_bottom = 110.0
+theme_override_fonts/font = ExtResource("5_6tbck")
+theme_override_font_sizes/font_size = 66
+text = "123"
+
+[node name="daytext" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = 815.0
+offset_top = 143.0
+offset_right = 1199.0
+offset_bottom = 310.0
+theme_override_fonts/font = ExtResource("5_6tbck")
+theme_override_font_sizes/font_size = 100
+text = "DAY"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fyngr")
+}
