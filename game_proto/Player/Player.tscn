@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://pg2aualirq87"]
+[gd_scene load_steps=66 format=3 uid="uid://pg2aualirq87"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_2b156"]
 [ext_resource type="Texture2D" uid="uid://bj8568lgejc4u" path="res://assets/player.png" id="1_ni2pu"]
@@ -96,6 +96,30 @@ region = Rect2(96, 288, 48, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_erplf"]
 atlas = ExtResource("1_ni2pu")
 region = Rect2(144, 288, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fymvn"]
+atlas = ExtResource("1_ni2pu")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eh2vi"]
+atlas = ExtResource("1_ni2pu")
+region = Rect2(48, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5qvq5"]
+atlas = ExtResource("1_ni2pu")
+region = Rect2(96, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnd5f"]
+atlas = ExtResource("1_ni2pu")
+region = Rect2(144, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m850q"]
+atlas = ExtResource("1_ni2pu")
+region = Rect2(192, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ev80c"]
+atlas = ExtResource("1_ni2pu")
+region = Rect2(240, 96, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hxfql"]
 atlas = ExtResource("2_n0t8b")
@@ -299,6 +323,29 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_fymvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eh2vi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5qvq5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mnd5f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m850q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ev80c")
+}],
+"loop": true,
+"name": &"idle_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_hxfql")
 }, {
 "duration": 1.0,
@@ -424,18 +471,18 @@ collision_mask = 14
 script = ExtResource("1_2b156")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.4, 0.4)
+scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_7bjy0")
-animation = &"idle"
-autoplay = "idle"
-frame_progress = 0.249937
+animation = &"idle_up"
+autoplay = "idle_up"
+frame_progress = 0.907425
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_ykv4r")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(6, 6)
+zoom = Vector2(7.28, 7.28)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(-1.90735e-06, 3)

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 70.0
+const SPEED = 55.0
 var health = 100
 var max_health = 100
 var is_dead = false
@@ -12,9 +12,14 @@ var attack_duration = 0.6
 var attack_timer = 0.0
 var attack_range_orc = 20  # Радиус атаки для нанесения урона орку
 
+var orcs_killed = 0
+
+var last_direction = Vector2.ZERO
+
 # Список анимаций для каждого направления
 enum {
 	DIRECTION_IDLE,
+	DIRECTION_IDLE_UP,
 	DIRECTION_LEFT,
 	DIRECTION_RIGHT,
 	DIRECTION_UP,
@@ -30,6 +35,8 @@ func set_animation(direction):
 	match direction:
 		DIRECTION_IDLE:
 			$AnimatedSprite2D.animation = "idle"
+		DIRECTION_IDLE_UP:
+			$AnimatedSprite2D.animation = "idle_up"
 		DIRECTION_LEFT:
 			$AnimatedSprite2D.animation = "left"
 		DIRECTION_RIGHT:
@@ -80,20 +87,30 @@ func _physics_process(delta):
 	var direction = Input.get_vector("left", "right", "up", "down")
 	velocity = direction * SPEED
 
+	if direction.length() != 0:
+		last_direction = direction
+		if direction.x < 0:
+			set_animation(DIRECTION_LEFT)
+		elif direction.x > 0:
+			set_animation(DIRECTION_RIGHT)
+		elif direction.y < 0:
+			set_animation(DIRECTION_UP)
+		elif direction.y > 0:
+			set_animation(DIRECTION_DOWN)
+	else:
+		if last_direction.y < 0:
+			set_animation(DIRECTION_IDLE_UP)
+		else:
+			set_animation(DIRECTION_IDLE)
+
 	if Input.is_action_just_pressed("attack"):
 		attack(direction)
 	else:
 		if direction.length() == 0:
-			set_animation(DIRECTION_IDLE)
-		else:
-			if direction.x < 0:
-				set_animation(DIRECTION_LEFT)
-			elif direction.x > 0:
-				set_animation(DIRECTION_RIGHT)
-			elif direction.y < 0:
-				set_animation(DIRECTION_UP)
-			elif direction.y > 0:
-				set_animation(DIRECTION_DOWN)
+			if last_direction.y < 0:
+				set_animation(DIRECTION_IDLE_UP)
+			else:
+				set_animation(DIRECTION_IDLE)
 
 	move_and_slide()
 
@@ -144,3 +161,16 @@ func receive_damage_from_orc(damage):
 func update_health_bar():
 	var health_bar = $"../../CanvasLayer/Panel/HealthProgressBar"
 	health_bar.value = health
+
+func check_quest_status():
+	if orcs_killed >= 5:  # Предполагаем, что нужно убить 5 орков для выполнения квеста
+		var npc = get_node("/root/mapmain/NPC")
+		npc.quest_completed = true
+		npc.emit_signal("quest_completed_signal")
+
+func _on_quest_given():
+	orcs_killed = 0
+
+func _on_quest_completed_signal():
+	# Логика для завершения квеста
+	pass
