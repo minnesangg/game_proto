@@ -1,11 +1,76 @@
-[gd_scene load_steps=11 format=3 uid="uid://di7yawkx21lxa"]
+[gd_scene load_steps=21 format=3 uid="uid://di7yawkx21lxa"]
 
 [ext_resource type="Texture2D" uid="uid://bjuacruqwuqk5" path="res://assets/Sprite-0003.png" id="1_o82cr"]
 [ext_resource type="Texture2D" uid="uid://db72h2bkm6w0w" path="res://assets/Sprite-0001.png" id="2_3uwjg"]
 [ext_resource type="Texture2D" uid="uid://bia0io8b4h628" path="res://assets/Sprite-0002.png" id="3_jcwb3"]
 [ext_resource type="Texture2D" uid="uid://b6dbl2x8t2rel" path="res://assets/png-clipart-health-video-game-pixel-art-bar-health-game-rectangle-thumbnail-removebg-preview.png" id="4_xu5ja"]
 [ext_resource type="FontFile" uid="uid://bl31onidt7mqy" path="res://assets/varna-2.ttf" id="5_6tbck"]
+[ext_resource type="Texture2D" uid="uid://tk1lq8ce8mb6" path="res://assets/coin.png" id="5_uwygv"]
 [ext_resource type="Script" path="res://map/Label.gd" id="6_l8fq5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kx3tn"]
+atlas = ExtResource("5_uwygv")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ko06i"]
+atlas = ExtResource("5_uwygv")
+region = Rect2(120, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrjlg"]
+atlas = ExtResource("5_uwygv")
+region = Rect2(240, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yws2q"]
+atlas = ExtResource("5_uwygv")
+region = Rect2(360, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6vnv"]
+atlas = ExtResource("5_uwygv")
+region = Rect2(480, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3l5r"]
+atlas = ExtResource("5_uwygv")
+region = Rect2(600, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25t3m"]
+atlas = ExtResource("5_uwygv")
+region = Rect2(720, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktieg"]
+atlas = ExtResource("5_uwygv")
+region = Rect2(840, 0, 120, 120)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ga3eu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kx3tn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ko06i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrjlg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yws2q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6vnv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3l5r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_25t3m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktieg")
+}],
+"loop": true,
+"name": &"spin",
+"speed": 5.0
+}]
 
 [sub_resource type="Animation" id="Animation_pmu56"]
 length = 0.001
@@ -63,8 +128,8 @@ _data = {
 
 [node name="Panel" type="Panel" parent="."]
 offset_top = -2.0
-offset_right = 298.0
-offset_bottom = 82.0
+offset_right = 303.0
+offset_bottom = 137.0
 
 [node name="HealthProgressBar" type="TextureProgressBar" parent="Panel"]
 modulate = Color(1, 1, 1, 0.843137)
@@ -85,6 +150,23 @@ tint_progress = Color(0.8239, 0.167236, 0.141776, 1)
 position = Vector2(38, 37)
 scale = Vector2(0.221264, 0.20977)
 texture = ExtResource("4_xu5ja")
+
+[node name="coin" type="AnimatedSprite2D" parent="Panel"]
+position = Vector2(34, 105)
+rotation = 0.00508438
+scale = Vector2(0.50525, 0.410748)
+sprite_frames = SubResource("SpriteFrames_ga3eu")
+animation = &"spin"
+autoplay = "spin"
+frame_progress = 0.480128
+
+[node name="cointext" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 91.0
+offset_top = 93.0
+offset_right = 262.0
+offset_bottom = 130.0
+theme_override_fonts/font = ExtResource("5_6tbck")
 
 [node name="Label" type="Label" parent="."]
 offset_left = 167.0
